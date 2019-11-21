@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/shaunharle/trivia-back-end#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "mongoose": "^5.7.12"
   }
 }
