@@ -36,6 +36,8 @@ mongoose.connection.once("open", () => {
   console.log("connected to mongoose");
 });
 
+mongoose.set("useFindAndModify", false);
+
 // Controllers/Routes
 const userController = require("./controllers/users_ph.js");
 app.use("/trivia", userController);
