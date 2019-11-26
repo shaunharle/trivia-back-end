@@ -42,6 +42,9 @@ mongoose.set("useFindAndModify", false);
 const userController = require("./controllers/users_ph.js");
 app.use("/trivia", userController);
 
+const leaderController = require("./controllers/leaderboard.js");
+app.use("/leaderboard", leaderController);
+
 app.get("/", (req, res) => {
   res.send("hello");
 });
