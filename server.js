@@ -7,6 +7,7 @@ const cors = require("cors");
 const MONGODB_URI = "mongodb://localhost:27017/trivia";
 
 const whitelist = ["http://localhost:3000"];
+// const whitelist = ["*"];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
@@ -16,9 +17,10 @@ const corsOptions = {
     }
   }
 };
+
 //Middleware
 app.use(express.json());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 //Connection to database
 mongoose.connection.on("error", err =>
@@ -36,7 +38,7 @@ mongoose.connection.once("open", () => {
 
 // Controllers/Routes
 const userController = require("./controllers/users_ph.js");
-// app.use("/trivia", userController);
+app.use("/trivia", userController);
 
 app.get("/", (req, res) => {
   res.send("hello");
