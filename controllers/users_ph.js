@@ -97,7 +97,7 @@ router.post(
       bcrypt.genSaltSync(10)
     );
     req.body.gamesplayedcount = 0;
-    req.body.highscores = {};
+    req.body.score = 0;
 
     User.create(req.body, (err, createdUser) => {
       console.log("created user ", createdUser);
