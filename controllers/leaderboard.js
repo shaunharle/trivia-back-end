@@ -20,6 +20,45 @@ leaderboard.get("/", (req, res) => {
   });
 });
 
+leaderboard.post("/update", (req, res) => {
+  console.log("leaderboard update");
+
+  let scoreEntry = Object.values(req.body);
+  console.log(req.body);
+
+  console.log(Object.values(req.body));
+
+  // username: this.state.username,
+  // score: this.state.scorePct,
+  // prevleader: this.state.leadingUser
+  //
+  // date: { type: Date, default: Date.now },
+  // username: { type: String, required: true },
+  // highScore: { type: Number, required: true },
+  // difficultyLevel: { type: String, required: true }
+
+  // ADD VALIDATION
+  Leaderboard.findOneAndUpdate(
+    { username: req.body.prevleader },
+    {
+      $set: { highScore: req.body.score, username: req.body.username }
+    },
+    { new: true },
+
+    (err, user) => {
+      if (err) {
+        console.log("User.js post error: ", err);
+      } else if (user) {
+        console.log("user");
+        // User.findByIdAndUpdate()
+        res.json({
+          error: `Success updating ${req.body.username}`
+        });
+      }
+    }
+  );
+});
+
 // leaderboard.delete("/:id", (req, res) => {
 //   Leaderboard.findByIdAndRemove(req.params.id, (err, deletedLeaderboard) => {
 //     if (err) {

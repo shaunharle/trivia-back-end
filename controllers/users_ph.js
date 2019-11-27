@@ -20,14 +20,17 @@ router.post("/update", (req, res) => {
     },
     { new: true },
     (err, updateduser) => {
+      console.log("after update  ", req.body.username);
       if (err) {
         console.log(err);
       } else {
-        // console.log("else find update - level2  ");
-        console.log("updateduser: ", updateduser);
-        res.json({
-          error: `Success updating ${updateduser.username}`
-        });
+        if (updateduser) {
+          // console.log("else find update - level2  ");
+          console.log("updateduser: ", updateduser);
+          res.json({
+            error: `Success updating ${updateduser.username}`
+          });
+        }
       }
     }
   );
